@@ -1,0 +1,120 @@
+<div class="usr_index">
+  <div class="point3">
+    <div class="point_inner">
+      <div class="balloon3">
+        POINT
+      </div>
+    </div>
+  </div>
+
+  <div id="point3_modal">
+    <div class="point_details">
+      <div class="sentence">
+        <strong>【新機能】⬆︎ボタンについて</strong><br><br>
+        問題：<br>検索結果で必要な項目全てが表示されているにも関わらず、一つ一つの項目をコピペするため時間がかかる。<br><br>
+        解決：<br>ワンクリックで全項目の入力が一度に完了出来る。
+      </div>
+    </div>
+  </div>
+
+  <div class="point4">
+    <div class="point_inner">
+      <div class="balloon3-right-btm">
+        POINT
+      </div>
+    </div>
+  </div>
+
+  <div id="point4_modal">
+    <div class="point_details">
+      <div class="sentence">
+        <strong>検索項目入力欄について</strong><br><br>
+        問題：<br>ドメイン名をコピペ後、毎回アドレスのホスト名（例 pca.co.jp）以外を削除している。<br><br>
+        解決：<br>初回コピペ時に自動でホスト名のみを残す。１回のドメイン名のコピーで検索とドメイン名入力が可能になる。<br>
+        (２回目以降はこの機能を無効にすることで他の項目での検索などに影響を及ぼさない)
+      </div>
+      <div class="image">
+        <%= image_tag "getextension.png" %>
+      </div>
+    </div>
+    <div class="point_details">
+      <div class="sentence">
+        <strong>検索項目入力欄のスペースについて</strong><br><br>
+        問題：<br>右の様にコピペをする際にスペースが入ってしまい正しい検索が行えないことがある。<br>またスペースを削除する作業が発生する。<br><br>
+        解決：<br>入力時、リアルタイムで全角半角スペースを自動で削除することで、不要なスペースを取り除く作業を省略。
+      </div>
+      <div class="image">
+        <%= image_tag "spaceforsearch.png" %>
+      </div>
+    </div>
+  </div>
+
+  <table id="usersdatatable" class="hover order-column row-border" style="z-index: 1; position: relative;">
+    <thead>
+      <tr id="filters">
+        <th></th>
+        <th>ドメイン名&nbsp;▼</th>
+        <th>法人名&nbsp;▼</th>
+        <th>都道府県&nbsp;▼</th>
+        <th>住所&nbsp;▼</th>
+        <th>電話&nbsp;▼</th>
+        <th>FAX&nbsp;▼</th>
+        <th>URL&nbsp;▼</th>
+        <th>法人番号&nbsp;▼</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @data.each do |datum| %>
+        <tr>
+          <td><a class="reflectionTrigger">⬆︎</a></td>
+          <td><span class="domain"><%= datum.domain %></span></td>
+          <td><span class="company"><%= datum.company %></span></td>
+          <td><span class="prefecture"><%= datum.prefecture %></span></td>
+          <td><span class="address"><%= datum.address %></span></td>
+          <td><span class="phone"><%= datum.phone %></span></td>
+          <td><span class="fax"><%= datum.fax %></span></td>
+          <td><span class="url"><%= datum.url %></span></td>
+          <td><span class="idNumber"><%= datum.id_number %></span></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="index_data">
+  <table>
+    <thead>
+      <tr>
+        <th>NO</th>
+        <th>ドメイン名</th>
+        <th>法人名</th>
+        <th>都道<br>府県</th>
+        <th>住所</th>
+        <th>電話</th>
+        <th>FAX</th>
+        <th>URL</th>
+        <th>法人番号</th>
+        <th>修正</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @data.each do |datum| %>
+        <tr>
+          <td><%= datum.id %></td>
+          <td><%= datum.domain %></td>
+          <td><%= datum.company %></td>
+          <td><%= datum.prefecture %></td>
+          <td><%= datum.address %></td>
+          <td><%= datum.phone %></td>
+          <td><%= datum.fax %></td>
+          <td><%= datum.url %></td>
+          <td><%= datum.id_number %></td>
+          <td><%= link_to '修正', edit_datum_path(datum) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

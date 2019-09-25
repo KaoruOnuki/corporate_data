@@ -1,0 +1,130 @@
+<div class="form_data">
+
+  <div class="point1">
+    <div class="point_inner">
+      <div class="balloon1">
+        POINT
+      </div>
+    </div>
+  </div>
+
+  <div id="point1_modal">
+    <div class="point_details">
+      <div class="sentence">
+        <strong>全ての入力欄について</strong><br><br>
+        問題：<br>右の様に以前入力した選択肢が出ると意図せず選択してしまうことがある。<br><br>
+        解決：<br>選択肢を非表示にすることで入力ミスを防止する。
+      </div>
+      <div class="image">
+        <%= image_tag "autocomplete.png" %>
+      </div>
+    </div>
+  </div>
+
+  <%= form_with(model: datum, local: true) do |form| %>
+    <% if datum.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(datum.errors.count, "error") %> prohibited this datum from being saved:</h2>
+
+        <ul>
+        <% datum.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :domain, "ドメイン名" %>
+      <div class="input_container">
+        <%= form.text_field :domain, required: true, autocomplete: "off" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :company, "法人名" %>
+      <div class="input_container">
+        <%= form.text_field :company, required: true, autocomplete: "off"  %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :prefecture, "都道府県" %>
+      <div class="input_container">
+        <%= form.text_field :prefecture, required: true, autocomplete: "off"  %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :address, "住所" %>
+      <div class="input_container">
+        <%= form.text_field :address, required: true, autocomplete: "off"  %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :phone, "電話" %>
+      <div class="input_container">
+        <%= form.text_field :phone, required: true, autocomplete: "off"  %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :fax, "FAX" %>
+      <div class="input_container">
+        <%= form.text_field :fax, autocomplete: "off"  %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :url, "URL" %>
+      <div class="input_container">
+        <%= form.text_field :url, required: true, autocomplete: "off"  %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :id_number, "法人番号" %>
+      <div class="input_container last_container">
+        <%= form.text_field :id_number, required: true, autocomplete: "off"  %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "送信", onclick: "return validation()" %>
+    </div>
+  <% end %>
+
+  <div class="point2">
+    <div class="point_inner">
+      <div class="balloon3-left">
+        POINT
+      </div>
+    </div>
+  </div>
+
+  <div id="point2_modal">
+    <div class="point_details">
+      <div class="sentence">
+        <strong>送信ボタンについて</strong><br><br>
+        問題：<br>右の様にコピペをする度にスペースが入ってしまう時がある。<br><br>
+        解決：<br>送信時、全角半角スペースを自動で削除しデータベースに不要なスペースが入ることを防止する。<br>
+        スペースのみを取り除く作業がなくなり時間短縮に繋がる。<br>
+        また最初の一文字を消してしまうなどの、入力ミスの防止にもなる。
+      </div>
+      <div class="image">
+        <%= image_tag "space.png" %>
+      </div>
+    </div>
+    <div class="point_details">
+      <div class="sentence">
+        <strong>悪意のある入力について</strong><br><br>
+        問題：<br>右の様な不審な入力を防ぎたい。<br><br>
+        解決：<br>記号などに入力制限をかけ入力を不可能にすることで、埋め込みや不正な入力を防止する。<br>
+      </div>
+      <div class="image">
+        <%= image_tag "badrq.png" %>
+      </div>
+    </div>
+  </div>
+</div>

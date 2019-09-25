@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @datum.domain %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @datum.company %>
+</p>
+
+<p>
+  <strong>Prefecture:</strong>
+  <%= @datum.prefecture %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @datum.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @datum.phone %>
+</p>
+
+<p>
+  <strong>Fax:</strong>
+  <%= @datum.fax %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @datum.url %>
+</p>
+
+<p>
+  <strong>Id number:</strong>
+  <%= @datum.id_number %>
+</p>
+
+<%= link_to 'Edit', edit_datum_path(@datum) %> |
+<%= link_to 'Back', data_path %>
