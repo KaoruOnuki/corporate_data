@@ -126,7 +126,7 @@ function validation(){
   allFormColums = [domainForm, companyForm, prefectureForm, addressForm, phoneForm, faxForm, urlForm, idNumberForm]
 
   var notAccepted = [
-    '>', '<', '=', '＞', '＜', '＝', ';', '；'
+    />/g, /</g, /=/g, /＞/g, /＜/g, /＝/g, /;/g, /；/g
   ]
 
   for (i = 0; i < allFormColums.length; i++) {
