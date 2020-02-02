@@ -95,20 +95,24 @@ $(document).on('turbolinks:load', function() {
   var countUp = 0;
   $(searchWindow).on('input', function(){
     countUp++;
+    var searchWord = $(searchWindow).val();
     if (countUp == 1) {
-      var searchWord = $(searchWindow).val();
       if (searchWord.length > 0) {
+        // 全角半角スペースを自動で削除
+        $(searchWindow).val(function(i, v) {
+           return v.replace(/\s+/g, "");
+         });
+        // サブドメイン 以外削除
         getExtension = searchWord.split(".").slice(-3);
         searchWord = getExtension.join(".");
         $(searchWindow).val(searchWord);
       }
-    }
-    // 全角半角スペースを自動で削除
-    searchColumns = [searchContainer]
-    for (i = 0; i < searchColumns.length; i++) {
-      $(searchColumns[i]).val(function(i, v) {
-        return v.replace(/\s+/g, "");
-      });
+    } else {
+      if (searchWord.length > 0) {
+        $(searchWindow).val(function(i, v) {
+           return v.replace(/\s+/g, "");
+         });
+      }
     }
   });
 });
