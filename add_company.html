@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <title>法人アクセス履歴</title>
+    <meta name="author" content="株式会社アンシャンテ">
+    <meta name="copyright" content="&copy; COPYRIGHT © 株式会社アンシャンテ ALL RIGHTS RESERVED.">
+    <meta name="robots" content="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/add_company.scss">
+  </head>
+
+  <body>
+    <div>
+      <header>
+      </header>
+
+      <table id="usersdatatable" class="hover order-column row-border" style="z-index: 1; position: relative;">
+        <thead>
+          <tr id="filters">
+            <th></th>
+            <th>ドメイン名&nbsp;▼</th>
+            <th>法人名&nbsp;▼</th>
+            <th>都道府県&nbsp;▼</th>
+            <th>住所&nbsp;▼</th>
+            <th>電話&nbsp;▼</th>
+            <th>FAX&nbsp;▼</th>
+            <th>URL&nbsp;▼</th>
+            <th>法人番号&nbsp;▼</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @data.each do |datum| %>
+            <tr>
+              <td><a class="reflectionTrigger">⬆︎</a></td>
+              <td><span class="domain"><%= datum.domain %></span></td>
+              <td><span class="company"><%= datum.company %></span></td>
+              <td><span class="prefecture"><%= datum.prefecture %></span></td>
+              <td><span class="address"><%= datum.address %></span></td>
+              <td><span class="phone"><%= datum.phone %></span></td>
+              <td><span class="fax"><%= datum.fax %></span></td>
+              <td><span class="url"><%= datum.url %></span></td>
+              <td><span class="idNumber"><%= datum.id_number %></span></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="index_data">
+        <table>
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>ドメイン名</th>
+              <th>法人名</th>
+              <th>都道<br>府県</th>
+              <th>住所</th>
+              <th>電話</th>
+              <th>FAX</th>
+              <th>URL</th>
+              <th>法人番号</th>
+              <th>修正</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @data.each do |datum| %>
+              <tr>
+                <td><%= datum.id %></td>
+                <td><%= datum.domain %></td>
+                <td><%= datum.company %></td>
+                <td><%= datum.prefecture %></td>
+                <td><%= datum.address %></td>
+                <td><%= datum.phone %></td>
+                <td><%= datum.fax %></td>
+                <td><%= datum.url %></td>
+                <td><%= datum.id_number %></td>
+                <td><%= link_to '修正', edit_datum_path(datum) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <script>
+
+        function tabManageContents(selectedTab) {
+          let tabs = document.getElementById( "tabManagement" );
+          let tabInners = document.getElementById( "tabInners" );
+        // let allTabs = Array.from(tabs.children); not supported in IE
+          let allTabs = [];
+          for (i = 0; i < tabs.children.length; i++) {
+            allTabs.push( tabs.children[i] ) ;
+          }
+
+          let allTabInners = [];
+          for (i = 0; i < tabInners.children.length; i++) {
+            allTabs.push( tabInners.children[i] ) ;
+          }
+
+          let targetTab = selectedTab;
+          let targetTabInner = document.getElementById( selectedTab.id + "_inner" );
+
+          addClassOnSelectedElement(allTabs, selectedTab);
+          addClassOnSelectedElement(allTabInners, targetTabInner);
+
+          function addClassOnSelectedElement(allElements, selectedElement) {
+            allElements.some(function(v, n){
+              if (v==selectedElement) allElements.splice(n,1);
+            });
+
+            for (i = 0; i < allElements.length; i++) {
+              if($(allElements[i]).hasClass('clicked')) {
+                $(allElements[i]).removeClass('clicked');
+              }
+            }
+            $(selectedElement).addClass('clicked');
+          }
+        };
+
+      </script>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+  </body>
+</html>
