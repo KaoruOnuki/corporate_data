@@ -53,17 +53,17 @@ $(document).on('turbolinks:load', function() {
 
     // 次のページを押した時
     var btn = document.getElementsByClassName( "paginate_button" );
-    // $("#usersdatatable_wrapper").on('click', $(btn), function(){
+    $("#usersdatatable_wrapper").on('click', $(btn), function(){
+      reflectBtn();
+    });
+
+    // $("#usersdatatable_previous").on('click', function(){
     //   reflectBtn();
     // });
-
-    $("#usersdatatable_previous").on('click', function(){
-      reflectBtn();
-    });
-
-    $("#usersdatatable_next").on('click', function(){
-      reflectBtn();
-    });
+    //
+    // $("#usersdatatable_next").on('click', function(){
+    //   reflectBtn();
+    // });
   }
   function reflectBtn(){
     $('.reflectionTrigger').click(function () {
